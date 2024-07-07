@@ -7,18 +7,18 @@ export const CreatSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      const item = state.items.find((item) => item.name === action.payload.name);
-      if (item) {
-        item.quantity += 1;
+      const existingItem = state.items.find(item => item.name === action.payload.name);
+      if (existingItem) {
+        existingItem.quantity += 1;
       } else {
         state.items.push({ ...action.payload, quantity: 1 });
       }
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter((item) => item.name !== action.payload.name);
+      state.items = state.items.filter(item => item.name !== action.payload.name);
     },
     updateQuantity: (state, action) => {
-      const item = state.items.find((item) => item.name === action.payload.name);
+      const item = state.items.find(item => item.name === action.payload.name);
       if (item) {
         item.quantity = action.payload.quantity;
       }
@@ -27,5 +27,4 @@ export const CreatSlice = createSlice({
 });
 
 export const { addItem, removeItem, updateQuantity } = CreatSlice.actions;
-
 export default CreatSlice.reducer;
