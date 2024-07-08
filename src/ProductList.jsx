@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItem } from './CreatSlice';
 import './ProductList.css';
 
-function ProductList() {
+function ProductList({ onViewCartClick }) {
     const dispatch = useDispatch();
     const cartItemsCount = useSelector(state => state.cart.items.reduce((total, item) => total + item.quantity, 0));
     const [addedToCart, setAddedToCart] = useState({});
@@ -223,6 +223,7 @@ function ProductList() {
             ]
         }
     ];
+
     const styleObj = {
         backgroundColor: '#4CAF50',
         color: '#fff!important',
@@ -262,7 +263,7 @@ function ProductList() {
                 </div>
                 <div style={styleObjUl}>
                     <div><a href="#" style={styleA}>Plants</a></div>
-                    <div className="cart-container">
+                    <div className="cart-container" onClick={onViewCartClick}>
                         <a href="#" style={styleA}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68">
                                 <rect width="256" height="256" fill="none"></rect>
